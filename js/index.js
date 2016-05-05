@@ -42,7 +42,24 @@ var createCatElem = function(cat) {
     return container;
 };
 
-var $content = document.getElementById("content");
+var createCatListItem = function(cat) {
+    var catListItem;
+
+    catListItem = document.createElement("li");
+    catListItem.className = "cats-list-item";
+    catListItem.innerHTML = cat.name;
+
+    catListItem.addEventListener("click", function() {
+        $content.innerHTML = "";
+        $content.appendChild(createCatElem(cat));
+    }, false);
+
+    return catListItem;
+};
+
+var $content = document.getElementById("content"),
+    $catsList = document.getElementById("cats-list");
+
 for (var i = 0; i < cats.length; i++) {
-    $content.appendChild(createCatElem(cats[i]));
+    $catsList.appendChild(createCatListItem(cats[i]));
 }
